@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace tokyo.aoisupersix.bve5MapViewer
 {
-    public partial class Form1 : Form
+    public partial class SelectScenariosForm : Form
     {
-        public Form1()
+        public SelectScenariosForm()
         {
             InitializeComponent();
         }
