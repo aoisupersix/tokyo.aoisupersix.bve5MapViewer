@@ -45,6 +45,11 @@ namespace tokyo.aoisupersix.bve5MapViewer
                     ScenarioListView = scenario.AddListViewItem(ScenarioListView);
                 }
             }
+
+            foreach(var group in ScenarioListView.Groups)
+            {
+                Console.WriteLine("group:.ToString -> {0}", group.ToString());
+            }
         }
     }
 }
