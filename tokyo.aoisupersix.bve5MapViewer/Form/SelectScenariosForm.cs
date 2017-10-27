@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Parser = tokyo.aoisupersix.bve5MapViewer.Parser;
@@ -23,6 +24,9 @@ namespace tokyo.aoisupersix.bve5MapViewer
         /// </summary>
         private void LoadScenarios()
         {
+            ImageList imgList = new ImageList();
+            ScenarioListView.LargeImageList = imgList;
+
             //デフォルトのパス TODO
             string defaultPath = @"F:\Library\Documents\Bvets\Scenarios";
             this.FilePathComboBox.Items.Add(defaultPath);
@@ -37,8 +41,8 @@ namespace tokyo.aoisupersix.bve5MapViewer
                 {
                     Scenarios.Add(scenario);
 
-                    //リストボックスに登録
-
+                    //リストビューに登録
+                    ScenarioListView = scenario.AddListViewItem(ScenarioListView);
                 }
             }
         }
