@@ -11,6 +11,7 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
     /// </summary>
     public static class FileHeaders
     {
+        public static readonly string ENCODING_SHIFT_JIS = @":shift_jis";
         public static readonly string SCENARIO = @"BveTs\s*Scenario\s*";
     }
 }

@@ -88,6 +88,21 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 return false;
             }
 
+            //文字コードがshift_jisの場合は読み直す
+            if(Regex.IsMatch(scenario, FileHeaders.ENCODING_SHIFT_JIS))
+            {
+                try
+                {
+                    StreamReader sr = new StreamReader(ScenarioPath, System.Text.Encoding.GetEncoding("Shift_JIS"));
+                    scenario = sr.ReadToEnd();
+                }
+                catch (IOException e)
+                {
+                    Console.Error.WriteLine("Scenario: FileNotFound : {0}", e.Message);
+                    return false;
+                }
+            }
+
             //シナリオヘッダと一致させる。ヘッダのバージョンは現時点では無視 -> TODO
             int pos;
             if ((pos = Regex.Match(scenario, FileHeaders.SCENARIO, RegexOptions.IgnoreCase).Index) != -1)
@@ -108,7 +123,7 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                     Console.Error.WriteLine("Scenario: ParseError : {0}:{1}", e.Location, e.Message);
                     return false;
                 }
-                if (ScenarioData.ContainsKey("Route") && ScenarioData.ContainsKey("Vehicle"))
+                if (ScenarioData.ContainsKey("Route"))
                 {
                     //読み込んだファイルの文法が正しい
                     Console.WriteLine("Scenario: LoadScenarioData:{0}", ScenarioPath);
@@ -117,15 +132,18 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                         Console.WriteLine("Key:{0} -> Value:{1}", p.Key, p.Value);
                         setData(p.Key, p.Value);
                     }
-                    //RoutePathがあれば正常とする
-                    if (RoutePath != null)
-                        return true;
+                    return true;
                 }
             }
             Console.Error.WriteLine("Scenario: header mismatched.");
             return false;
         }
 
+        /// <summary>
+        /// リストビューにシナリオ項目を追加する
+        /// </summary>
+        /// <param name="listView">追加する対象のリストビュー</param>
+        /// <returns>追加後のリストビュー</returns>
         public ListView AddListViewItem(ListView listView)
         {
             ListViewItem item = new ListViewItem(TitleName);
@@ -137,10 +155,15 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
             if (ImagePath != null && System.IO.File.Exists(dirName + ImagePath))
             {
                 //画像登録
-                if (!listView.LargeImageList.Images.ContainsKey(ImagePath))
-                    listView.LargeImageList.Images.Add(ImagePath, Image.FromFile(dirName + ImagePath));
+                try
+                {
+                    if (!listView.LargeImageList.Images.ContainsKey(ImagePath))
+                        listView.LargeImageList.Images.Add(ImagePath, Image.FromFile(dirName + ImagePath));
 
-                item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(ImagePath);
+                    item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(ImagePath);
+                }
+                catch (Exception) { Console.Error.WriteLine("Scenario: Image not active format."); }
+
             }
 
             //グループの追加
