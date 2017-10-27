@@ -14,7 +14,16 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
     class Scenario
     {
         public string ScenarioPath;
-        public Dictionary<string, string> ScenarioData { get; set; }
+
+        //以下シナリオファイルのデータ達
+        public string RoutePath { get; private set; }
+        public string VehiclePath { get; private set; }
+        public string ImagePath { get; private set; }
+        public string TitleName { get; private set; }
+        public string RouteTitleName { get; private set; }
+        public string VehicleTitleName { get; private set; }
+        public string AuthorName { get; private set; }
+        public string Comment { get; private set; }
 
         public Scenario(string path)
         {
@@ -48,6 +57,8 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 int firstLine = scenario.IndexOf('\n', pos) + 1;
                 scenario = scenario.Substring(firstLine);
                 Console.WriteLine("scenario:{0}", scenario);
+
+                Dictionary<string, string> ScenarioData;
                 try
                 {
                     ScriptApp app = new ScriptApp(new LanguageData(new ScenariosGrammar()));
@@ -60,17 +71,56 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 }
                 if(ScenarioData.ContainsKey("Route") && ScenarioData.ContainsKey("Vehicle"))
                 {
-                    //正常に読み込めた
+                    //読み込んだファイルの文法が正しい
                     Console.WriteLine("Scenario: LoadScenarioData:{0}", ScenarioPath);
                     foreach(var p in ScenarioData)
                     {
                         Console.WriteLine("Key:{0} -> Value:{1}", p.Key, p.Value);
+                        setData(p.Key, p.Value);
                     }
-                    return true;
+                    //RoutePathがあれば正常とする
+                    if(RoutePath != null)
+                        return true;
                 }
             }
             Console.Error.WriteLine("Scenario: header mismatched.");
             return false;
+        }
+
+        /// <summary>
+        /// 取得した情報をメンバに代入する
+        /// </summary>
+        /// <param name="key">ステートメントキー名</param>
+        /// <param name="value">ステートメントの値</param>
+        private void setData(string key, string value)
+        {
+            switch (key)
+            {
+                case "Route":
+                    RoutePath = value;
+                    break;
+                case "Vehicle":
+                    VehiclePath = value;
+                    break;
+                case "Image":
+                    ImagePath = value;
+                    break;
+                case "Title":
+                    TitleName = value;
+                    break;
+                case "RouteTitle":
+                    RouteTitleName = value;
+                    break;
+                case "VehicleTitle":
+                    VehicleTitleName = value;
+                    break;
+                case "Author":
+                    AuthorName = value;
+                    break;
+                case "Comment":
+                    Comment = value;
+                    break;
+            }
         }
     }
 }

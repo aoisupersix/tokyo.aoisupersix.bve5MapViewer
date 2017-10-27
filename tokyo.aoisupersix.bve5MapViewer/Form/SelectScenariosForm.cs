@@ -34,7 +34,12 @@ namespace tokyo.aoisupersix.bve5MapViewer
             {
                 Parser.Scenario scenario = new Parser.Scenario(file);
                 if (scenario.LoadScenario())
+                {
                     Scenarios.Add(scenario);
+
+                    //リストボックスに登録
+
+                }
             }
         }
     }
