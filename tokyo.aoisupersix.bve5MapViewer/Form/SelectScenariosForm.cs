@@ -10,13 +10,32 @@ namespace tokyo.aoisupersix.bve5MapViewer
     /// </summary>
     public partial class SelectScenariosForm : Form
     {
+        private List<Parser.Scenario> Scenarios = new List<Parser.Scenario>();
+
         public SelectScenariosForm()
         {
             InitializeComponent();
+            LoadScenarios();
+        }
 
-            //読み込みテスト
-            Parser.Scenario scenario = new Parser.Scenario(@"F:\Library\Documents\Bvets\Scenarios\mackoy.Keisei.txt");
-            scenario.LoadScenario();
+        /// <summary>
+        /// 現在のディレクトリにあるシナリオファイルの読み込み
+        /// </summary>
+        private void LoadScenarios()
+        {
+            //デフォルトのパス TODO
+            string defaultPath = @"F:\Library\Documents\Bvets\Scenarios";
+            this.FilePathComboBox.Items.Add(defaultPath);
+            this.FilePathComboBox.SelectedIndex = this.FilePathComboBox.Items.Count - 1;
+            string[] files = System.IO.Directory.GetFiles(defaultPath, "*");
+
+            //読み込み
+            foreach(string file in files)
+            {
+                Parser.Scenario scenario = new Parser.Scenario(file);
+                if (scenario.LoadScenario())
+                    Scenarios.Add(scenario);
+            }
         }
     }
 }
