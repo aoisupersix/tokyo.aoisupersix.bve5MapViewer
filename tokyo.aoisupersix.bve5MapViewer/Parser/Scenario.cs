@@ -128,24 +128,25 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
 
         public ListView AddListViewItem(ListView listView)
         {
+            ListViewItem item = new ListViewItem(TitleName);
+            item.Name = TitleName;
+            item.Text = TitleName;
+
+            //画像の登録
             string dirName = System.IO.Path.GetDirectoryName(ScenarioPath) + @"\";
-            if(ImagePath != null && System.IO.File.Exists(dirName + ImagePath))
+            if (ImagePath != null && System.IO.File.Exists(dirName + ImagePath))
             {
-
-                ListViewItem item = new ListViewItem(TitleName);
-                item.Name = TitleName;
-                item.Text = TitleName;
-
-                //画像の登録
                 if (!listView.LargeImageList.Images.ContainsKey(ImagePath))
                 {
                     listView.LargeImageList.Images.Add(ImagePath, Image.FromFile(dirName + ImagePath));
                     item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(ImagePath);
                 }
 
-                //リストビューに登録
-                listView.Items.Add(item);
             }
+
+            //リストビューに登録
+            listView.Items.Add(item);
+
             return listView;
         }
     }
