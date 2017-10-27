@@ -131,13 +131,17 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
             string dirName = System.IO.Path.GetDirectoryName(ScenarioPath) + @"\";
             if(ImagePath != null && System.IO.File.Exists(dirName + ImagePath))
             {
-                //画像の登録
-                if (!listView.LargeImageList.Images.ContainsKey(ImagePath))
-                    listView.LargeImageList.Images.Add(ImagePath, Image.FromFile(dirName + ImagePath));
 
-                ListViewItem item = new ListViewItem(TitleName, listView.LargeImageList.Images.IndexOfKey(ImagePath));
+                ListViewItem item = new ListViewItem(TitleName);
                 item.Name = TitleName;
                 item.Text = TitleName;
+
+                //画像の登録
+                if (!listView.LargeImageList.Images.ContainsKey(ImagePath))
+                {
+                    listView.LargeImageList.Images.Add(ImagePath, Image.FromFile(dirName + ImagePath));
+                    item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(ImagePath);
+                }
 
                 //リストビューに登録
                 listView.Items.Add(item);
