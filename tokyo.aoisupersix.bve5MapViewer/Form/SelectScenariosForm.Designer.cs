@@ -59,7 +59,7 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.Controls.Add(this.MainTableLayout);
-            this.SplitContainer.Size = new System.Drawing.Size(484, 461);
+            this.SplitContainer.Size = new System.Drawing.Size(584, 561);
             this.SplitContainer.SplitterDistance = 30;
             this.SplitContainer.TabIndex = 0;
             // 
@@ -76,7 +76,7 @@
             this.TopTableLayout.Name = "TopTableLayout";
             this.TopTableLayout.RowCount = 1;
             this.TopTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TopTableLayout.Size = new System.Drawing.Size(484, 30);
+            this.TopTableLayout.Size = new System.Drawing.Size(584, 30);
             this.TopTableLayout.TabIndex = 0;
             // 
             // ReferenceButton
@@ -85,8 +85,8 @@
             this.ReferenceButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReferenceButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ReferenceButton.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ReferenceButton.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ReferenceButton.Location = new System.Drawing.Point(452, 3);
+            this.ReferenceButton.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.ReferenceButton.Location = new System.Drawing.Point(552, 3);
             this.ReferenceButton.Name = "ReferenceButton";
             this.ReferenceButton.Size = new System.Drawing.Size(29, 24);
             this.ReferenceButton.TabIndex = 0;
@@ -96,12 +96,13 @@
             // FilePathComboBox
             // 
             this.FilePathComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FilePathComboBox.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.FilePathComboBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.FilePathComboBox.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.FilePathComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.FilePathComboBox.FormattingEnabled = true;
-            this.FilePathComboBox.Location = new System.Drawing.Point(3, 3);
+            this.FilePathComboBox.Location = new System.Drawing.Point(3, 5);
+            this.FilePathComboBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.FilePathComboBox.Name = "FilePathComboBox";
-            this.FilePathComboBox.Size = new System.Drawing.Size(443, 23);
+            this.FilePathComboBox.Size = new System.Drawing.Size(543, 20);
             this.FilePathComboBox.TabIndex = 1;
             // 
             // MainTableLayout
@@ -115,7 +116,7 @@
             this.MainTableLayout.RowCount = 2;
             this.MainTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.77778F));
             this.MainTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
-            this.MainTableLayout.Size = new System.Drawing.Size(484, 427);
+            this.MainTableLayout.Size = new System.Drawing.Size(584, 527);
             this.MainTableLayout.TabIndex = 0;
             // 
             // ScenarioListView
@@ -123,7 +124,7 @@
             this.ScenarioListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ScenarioListView.Location = new System.Drawing.Point(3, 3);
             this.ScenarioListView.Name = "ScenarioListView";
-            this.ScenarioListView.Size = new System.Drawing.Size(478, 326);
+            this.ScenarioListView.Size = new System.Drawing.Size(578, 403);
             this.ScenarioListView.TabIndex = 0;
             this.ScenarioListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -131,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ClientSize = new System.Drawing.Size(584, 561);
             this.Controls.Add(this.SplitContainer);
             this.Name = "SelectScenariosForm";
             this.Text = "SelectScenariosForm";
