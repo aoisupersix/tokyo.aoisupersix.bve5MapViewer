@@ -25,6 +25,7 @@ namespace tokyo.aoisupersix.bve5MapViewer
         private void LoadScenarios()
         {
             ImageList imgList = new ImageList();
+            imgList.ImageSize = new Size(64, 64);
             ScenarioListView.LargeImageList = imgList;
 
             //デフォルトのパス TODO

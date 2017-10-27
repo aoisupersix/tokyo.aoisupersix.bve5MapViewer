@@ -96,13 +96,13 @@
             // FilePathComboBox
             // 
             this.FilePathComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FilePathComboBox.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.FilePathComboBox.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FilePathComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.FilePathComboBox.FormattingEnabled = true;
-            this.FilePathComboBox.Location = new System.Drawing.Point(3, 5);
-            this.FilePathComboBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.FilePathComboBox.Location = new System.Drawing.Point(3, 2);
+            this.FilePathComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.FilePathComboBox.Name = "FilePathComboBox";
-            this.FilePathComboBox.Size = new System.Drawing.Size(543, 20);
+            this.FilePathComboBox.Size = new System.Drawing.Size(543, 26);
             this.FilePathComboBox.TabIndex = 1;
             // 
             // MainTableLayout
@@ -122,9 +122,11 @@
             // ScenarioListView
             // 
             this.ScenarioListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScenarioListView.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ScenarioListView.Location = new System.Drawing.Point(3, 3);
             this.ScenarioListView.Name = "ScenarioListView";
             this.ScenarioListView.Size = new System.Drawing.Size(578, 403);
+            this.ScenarioListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.ScenarioListView.TabIndex = 0;
             this.ScenarioListView.UseCompatibleStateImageBehavior = false;
             // 
