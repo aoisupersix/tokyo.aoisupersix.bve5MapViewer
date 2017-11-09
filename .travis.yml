@@ -1,0 +1,11 @@
+language: csharp
+script:
+  - xbuild /p:Configuration=Debug tokyo.aoisupersix.bve5MapViewer.sln
+before_install:
+  - sudo apt-get install nunit-console
+before_script:
+  - nuget restore tokyo.aoisupersix.bve5MapViewer.sln
+after_script:
+  - nunit-console tokyo.aoisupersix.bve5MapViewer/bin/Debug/Irony.dll
+  - nunit-console tokyo.aoisupersix.bve5MapViewer/bin/Debug/Irony.Interpreter.dll
+  - nunit-console tokyo.aoisupersix.bve5MapViewer/bin/Debug/SlimDX.dll
