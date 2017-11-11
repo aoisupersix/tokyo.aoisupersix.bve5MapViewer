@@ -87,7 +87,7 @@
     <Compile Include="Parser\Constant\FileHeaders.cs" />
     <Compile Include="Parser\ParseInfo.cs" />
     <Compile Include="Parser\Scenario.cs" />
-    <Compile Include="Parser\Grammars\ScenariosGrammar.cs" />
+    <Compile Include="Parser\ScenarioGrammar\ScenariosGrammar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parser\Constant\ExtraChars.cs" />
