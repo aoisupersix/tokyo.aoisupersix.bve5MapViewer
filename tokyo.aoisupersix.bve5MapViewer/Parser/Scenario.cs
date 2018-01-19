@@ -94,7 +94,7 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                         Console.WriteLine("Parse Successful !");
                         return true;
                     }
-                    catch (Exception e)
+                    catch (NullReferenceException)
                     {
                         Console.Error.WriteLine("Scenario: 【{0}】header mismatched.", this.File.FullName);
                     }
@@ -105,7 +105,7 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                     Console.Error.WriteLine("【{0}】is not text file.", this.File.FullName);
                 }
             }
-            Console.Error.WriteLine("Scenario: header mismatched.");
+            Console.Error.WriteLine("Scenario Load Error");
             return false;
         }
 
