@@ -117,8 +117,14 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
         public ListView AddListViewItem(ListView listView)
         {
             ListViewItem item = new ListViewItem(Data.Title);
+            //シナリオ情報の設定
             item.Name = Data.Title;
             item.Text = Data.Title;
+            item.SubItems.Add(Data.RouteTitle);
+            item.SubItems.Add(Data.VehicleTitle);
+            item.SubItems.Add(Data.Author);
+            item.SubItems.Add(this.File.Name);
+            
 
             //画像の追加
             string dirName = this.File.DirectoryName + @"\";
