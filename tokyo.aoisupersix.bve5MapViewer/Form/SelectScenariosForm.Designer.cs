@@ -148,7 +148,7 @@
             this.columnHeader_Author,
             this.columnHeader_File});
             this.ScenarioListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ScenarioListView.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ScenarioListView.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ScenarioListView.Location = new System.Drawing.Point(3, 28);
             this.ScenarioListView.Name = "ScenarioListView";
             this.ScenarioListView.Size = new System.Drawing.Size(578, 384);

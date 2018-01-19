@@ -58,7 +58,7 @@ namespace tokyo.aoisupersix.bve5MapViewer
 
         public SelectScenariosForm()
         {
-            ThumbnailSize = new Size(128, 128);
+            ThumbnailSize = new Size(96, 96);
 
             InitializeComponent();
             LoadScenarios();

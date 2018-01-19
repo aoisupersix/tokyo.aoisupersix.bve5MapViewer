@@ -30,30 +30,30 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
         /// <param name="width">サムネイルの横幅</param>
         /// <param name="height">サムネイルの縦幅</param>
         /// <returns>引数に指定した大きさのサムネイル画像</returns>
-        private Image CreateThumbnail(string path, int width, int height)
+        private Image CreateThumbnail(string path, Size imgSize)
         {
             Bitmap originalBitmap = new Bitmap(path);
             //縦横比の計算
             int x, y;
-            double w = (double)width / originalBitmap.Width;
-            double h = (double)height / originalBitmap.Height;
+            double w = (double)imgSize.Width / originalBitmap.Width;
+            double h = (double)imgSize.Height / originalBitmap.Height;
             if(w <= h)
             {
-                x = width;
-                y = (int)(width * (w / h));
+                x = imgSize.Width;
+                y = (int)(imgSize.Width * (w / h));
             }
             else
             {
-                x = (int)(height * (h / w));
-                y = height;
+                x = (int)(imgSize.Height * (h / w));
+                y = imgSize.Height;
             }
 
             //描画位置を計算
-            int sx = (width - x) / 2;
-            int sy = (height - y) / 2;
+            int sx = (imgSize.Width - x) / 2;
+            int sy = (imgSize.Height - y) / 2;
 
             //imagelistに合わせたサムネイルを描画
-            Bitmap bitmap = new Bitmap(width, height);
+            Bitmap bitmap = new Bitmap(imgSize.Width, imgSize.Height);
             Graphics graphics = Graphics.FromImage(bitmap);
             graphics.DrawImage(originalBitmap, sx, sy, x, y);
 
@@ -134,7 +134,7 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 try
                 {
                     if (!listView.LargeImageList.Images.ContainsKey(Data.Image))
-                        listView.LargeImageList.Images.Add(Data.Image, CreateThumbnail(dirName + Data.Image, 128, 128));
+                        listView.LargeImageList.Images.Add(Data.Image, CreateThumbnail(dirName + Data.Image, listView.LargeImageList.ImageSize));
                     Image img = Image.FromFile(dirName + Data.Image);
                     item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(Data.Image);
                 }
