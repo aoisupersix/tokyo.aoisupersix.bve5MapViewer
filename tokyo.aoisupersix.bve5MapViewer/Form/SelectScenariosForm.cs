@@ -13,10 +13,13 @@ namespace tokyo.aoisupersix.bve5MapViewer
     {
         private List<Parser.Scenario> Scenarios = new List<Parser.Scenario>();
 
+        public static Size ThumbnailSize { get; private set; }
+
         public SelectScenariosForm()
         {
             InitializeComponent();
             LoadScenarios();
+            ThumbnailSize = new Size(128, 128);
         }
 
         /// <summary>
@@ -25,7 +28,7 @@ namespace tokyo.aoisupersix.bve5MapViewer
         private void LoadScenarios()
         {
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(128, 128);
+            imgList.ImageSize = ThumbnailSize;
             ScenarioListView.LargeImageList = imgList;
 
             //デフォルトのパス TODO
