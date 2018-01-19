@@ -55,7 +55,7 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
             //imagelistに合わせたサムネイルを描画
             Bitmap bitmap = new Bitmap(width, height);
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.DrawImage(originalBitmap, sx, sy, sx+x, sy+y);
+            graphics.DrawImage(originalBitmap, sx, sy, x, y);
 
             return bitmap;
         }
