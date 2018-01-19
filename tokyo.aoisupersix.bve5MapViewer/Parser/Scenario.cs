@@ -24,6 +24,43 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
         public ScenarioData Data { get; set; }
 
         /// <summary>
+        /// シナリオのサムネイルを縦横比を固定して返します。
+        /// </summary>
+        /// <param name="path">サムネイル画像のファイルパス</param>
+        /// <param name="width">サムネイルの横幅</param>
+        /// <param name="height">サムネイルの縦幅</param>
+        /// <returns>引数に指定した大きさのサムネイル画像</returns>
+        private Image CreateThumbnail(string path, Size imgSize)
+        {
+            Bitmap originalBitmap = new Bitmap(path);
+            //縦横比の計算
+            int x, y;
+            double w = (double)imgSize.Width / originalBitmap.Width;
+            double h = (double)imgSize.Height / originalBitmap.Height;
+            if(w <= h)
+            {
+                x = imgSize.Width;
+                y = (int)(imgSize.Width * (w / h));
+            }
+            else
+            {
+                x = (int)(imgSize.Height * (h / w));
+                y = imgSize.Height;
+            }
+
+            //描画位置を計算
+            int sx = (imgSize.Width - x) / 2;
+            int sy = (imgSize.Height - y) / 2;
+
+            //imagelistに合わせたサムネイルを描画
+            Bitmap bitmap = new Bitmap(imgSize.Width, imgSize.Height);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            graphics.DrawImage(originalBitmap, sx, sy, x, y);
+
+            return bitmap;
+        }
+
+        /// <summary>
         /// シナリオをファイルパスを指定して作成します。
         /// </summary>
         /// <param name="path">シナリオファイルのファイルパス</param>
@@ -80,8 +117,14 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
         public ListView AddListViewItem(ListView listView)
         {
             ListViewItem item = new ListViewItem(Data.Title);
+            //シナリオ情報の設定
             item.Name = Data.Title;
             item.Text = Data.Title;
+            item.SubItems.Add(Data.RouteTitle);
+            item.SubItems.Add(Data.VehicleTitle);
+            item.SubItems.Add(Data.Author);
+            item.SubItems.Add(this.File.Name);
+            
 
             //画像の追加
             string dirName = this.File.DirectoryName + @"\";
@@ -91,8 +134,8 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 try
                 {
                     if (!listView.LargeImageList.Images.ContainsKey(Data.Image))
-                        listView.LargeImageList.Images.Add(Data.Image, Image.FromFile(dirName + Data.Image));
-
+                        listView.LargeImageList.Images.Add(Data.Image, CreateThumbnail(dirName + Data.Image, listView.LargeImageList.ImageSize));
+                    Image img = Image.FromFile(dirName + Data.Image);
                     item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(Data.Image);
                 }
                 catch (Exception) { Console.Error.WriteLine("Scenario: Image not active format."); }

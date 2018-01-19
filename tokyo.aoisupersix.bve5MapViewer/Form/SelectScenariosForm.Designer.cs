@@ -28,18 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectScenariosForm));
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.TopTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.ReferenceButton = new System.Windows.Forms.Button();
             this.FilePathComboBox = new System.Windows.Forms.ComboBox();
             this.MainTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.ScenarioListView = new System.Windows.Forms.ListView();
+            this.DisplaySettingToolStrip = new System.Windows.Forms.ToolStrip();
+            this.DisplayToolStripButton = new System.Windows.Forms.ToolStripSplitButton();
+            this.DisplayToolStripItem_Icon = new System.Windows.Forms.ToolStripMenuItem();
+            this.DisplayToolStripItem_Details = new System.Windows.Forms.ToolStripMenuItem();
+            this.DisplayToolStripItem_Tile = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortToolStripButton = new System.Windows.Forms.ToolStripSplitButton();
+            this.SortToolStripItem_Title = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortToolStripItem_Route = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortToolStripItem_Vehicle = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortToolStripItem_Author = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortToolStripItem_File = new System.Windows.Forms.ToolStripMenuItem();
+            this.columnHeader_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader_Route = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader_Vehicle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader_Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader_File = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
             this.TopTableLayout.SuspendLayout();
             this.MainTableLayout.SuspendLayout();
+            this.DisplaySettingToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // SplitContainer
@@ -109,11 +127,13 @@
             // 
             this.MainTableLayout.ColumnCount = 1;
             this.MainTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainTableLayout.Controls.Add(this.ScenarioListView, 0, 0);
+            this.MainTableLayout.Controls.Add(this.ScenarioListView, 0, 1);
+            this.MainTableLayout.Controls.Add(this.DisplaySettingToolStrip, 0, 0);
             this.MainTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTableLayout.Location = new System.Drawing.Point(0, 0);
             this.MainTableLayout.Name = "MainTableLayout";
-            this.MainTableLayout.RowCount = 2;
+            this.MainTableLayout.RowCount = 3;
+            this.MainTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.MainTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.77778F));
             this.MainTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
             this.MainTableLayout.Size = new System.Drawing.Size(584, 527);
@@ -121,14 +141,139 @@
             // 
             // ScenarioListView
             // 
+            this.ScenarioListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader_Title,
+            this.columnHeader_Route,
+            this.columnHeader_Vehicle,
+            this.columnHeader_Author,
+            this.columnHeader_File});
             this.ScenarioListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ScenarioListView.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ScenarioListView.Location = new System.Drawing.Point(3, 3);
+            this.ScenarioListView.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ScenarioListView.Location = new System.Drawing.Point(3, 28);
             this.ScenarioListView.Name = "ScenarioListView";
-            this.ScenarioListView.Size = new System.Drawing.Size(578, 403);
+            this.ScenarioListView.Size = new System.Drawing.Size(578, 384);
             this.ScenarioListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.ScenarioListView.TabIndex = 0;
             this.ScenarioListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // DisplaySettingToolStrip
+            // 
+            this.DisplaySettingToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.DisplaySettingToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DisplayToolStripButton,
+            this.SortToolStripButton});
+            this.DisplaySettingToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.DisplaySettingToolStrip.Name = "DisplaySettingToolStrip";
+            this.DisplaySettingToolStrip.Size = new System.Drawing.Size(584, 25);
+            this.DisplaySettingToolStrip.TabIndex = 1;
+            this.DisplaySettingToolStrip.Text = "toolStrip1";
+            // 
+            // DisplayToolStripButton
+            // 
+            this.DisplayToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DisplayToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DisplayToolStripItem_Icon,
+            this.DisplayToolStripItem_Details,
+            this.DisplayToolStripItem_Tile});
+            this.DisplayToolStripButton.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.DisplayToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DisplayToolStripButton.Image")));
+            this.DisplayToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DisplayToolStripButton.Name = "DisplayToolStripButton";
+            this.DisplayToolStripButton.Size = new System.Drawing.Size(50, 22);
+            this.DisplayToolStripButton.Text = "表示";
+            this.DisplayToolStripButton.ButtonClick += new System.EventHandler(this.DisplayToolStripButton_ButtonClick);
+            // 
+            // DisplayToolStripItem_Icon
+            // 
+            this.DisplayToolStripItem_Icon.Name = "DisplayToolStripItem_Icon";
+            this.DisplayToolStripItem_Icon.Size = new System.Drawing.Size(152, 22);
+            this.DisplayToolStripItem_Icon.Text = "アイコン";
+            this.DisplayToolStripItem_Icon.Click += new System.EventHandler(this.DisplayToolStripItem_Icon_Click);
+            // 
+            // DisplayToolStripItem_Details
+            // 
+            this.DisplayToolStripItem_Details.Name = "DisplayToolStripItem_Details";
+            this.DisplayToolStripItem_Details.Size = new System.Drawing.Size(152, 22);
+            this.DisplayToolStripItem_Details.Text = "詳細";
+            this.DisplayToolStripItem_Details.Click += new System.EventHandler(this.DisplayToolStripItem_Details_Click);
+            // 
+            // DisplayToolStripItem_Tile
+            // 
+            this.DisplayToolStripItem_Tile.Name = "DisplayToolStripItem_Tile";
+            this.DisplayToolStripItem_Tile.Size = new System.Drawing.Size(152, 22);
+            this.DisplayToolStripItem_Tile.Text = "並べて表示";
+            this.DisplayToolStripItem_Tile.Click += new System.EventHandler(this.DisplayToolStripItem_Tile_Click);
+            // 
+            // SortToolStripButton
+            // 
+            this.SortToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SortToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SortToolStripItem_Title,
+            this.SortToolStripItem_Route,
+            this.SortToolStripItem_Vehicle,
+            this.SortToolStripItem_Author,
+            this.SortToolStripItem_File});
+            this.SortToolStripButton.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.SortToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("SortToolStripButton.Image")));
+            this.SortToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SortToolStripButton.Name = "SortToolStripButton";
+            this.SortToolStripButton.Size = new System.Drawing.Size(71, 22);
+            this.SortToolStripButton.Text = "並び替え";
+            // 
+            // SortToolStripItem_Title
+            // 
+            this.SortToolStripItem_Title.Name = "SortToolStripItem_Title";
+            this.SortToolStripItem_Title.Size = new System.Drawing.Size(152, 22);
+            this.SortToolStripItem_Title.Text = "タイトル";
+            // 
+            // SortToolStripItem_Route
+            // 
+            this.SortToolStripItem_Route.Name = "SortToolStripItem_Route";
+            this.SortToolStripItem_Route.Size = new System.Drawing.Size(152, 22);
+            this.SortToolStripItem_Route.Text = "路線";
+            // 
+            // SortToolStripItem_Vehicle
+            // 
+            this.SortToolStripItem_Vehicle.Name = "SortToolStripItem_Vehicle";
+            this.SortToolStripItem_Vehicle.Size = new System.Drawing.Size(152, 22);
+            this.SortToolStripItem_Vehicle.Text = "車両";
+            // 
+            // SortToolStripItem_Author
+            // 
+            this.SortToolStripItem_Author.Name = "SortToolStripItem_Author";
+            this.SortToolStripItem_Author.Size = new System.Drawing.Size(152, 22);
+            this.SortToolStripItem_Author.Text = "作者";
+            // 
+            // SortToolStripItem_File
+            // 
+            this.SortToolStripItem_File.Name = "SortToolStripItem_File";
+            this.SortToolStripItem_File.Size = new System.Drawing.Size(152, 22);
+            this.SortToolStripItem_File.Text = "ファイル";
+            // 
+            // columnHeader_Title
+            // 
+            this.columnHeader_Title.Text = "タイトル";
+            this.columnHeader_Title.Width = 100;
+            // 
+            // columnHeader_Route
+            // 
+            this.columnHeader_Route.Text = "路線";
+            this.columnHeader_Route.Width = 100;
+            // 
+            // columnHeader_Vehicle
+            // 
+            this.columnHeader_Vehicle.Text = "車両";
+            this.columnHeader_Vehicle.Width = 100;
+            // 
+            // columnHeader_Author
+            // 
+            this.columnHeader_Author.Text = "作者";
+            this.columnHeader_Author.Width = 100;
+            // 
+            // columnHeader_File
+            // 
+            this.columnHeader_File.Text = "ファイル";
+            this.columnHeader_File.Width = 100;
             // 
             // SelectScenariosForm
             // 
@@ -145,6 +290,9 @@
             this.TopTableLayout.ResumeLayout(false);
             this.TopTableLayout.PerformLayout();
             this.MainTableLayout.ResumeLayout(false);
+            this.MainTableLayout.PerformLayout();
+            this.DisplaySettingToolStrip.ResumeLayout(false);
+            this.DisplaySettingToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -157,5 +305,21 @@
         private System.Windows.Forms.ComboBox FilePathComboBox;
         private System.Windows.Forms.TableLayoutPanel MainTableLayout;
         private System.Windows.Forms.ListView ScenarioListView;
+        private System.Windows.Forms.ToolStrip DisplaySettingToolStrip;
+        private System.Windows.Forms.ToolStripSplitButton DisplayToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem DisplayToolStripItem_Icon;
+        private System.Windows.Forms.ToolStripMenuItem DisplayToolStripItem_Details;
+        private System.Windows.Forms.ToolStripMenuItem DisplayToolStripItem_Tile;
+        private System.Windows.Forms.ToolStripSplitButton SortToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem SortToolStripItem_Title;
+        private System.Windows.Forms.ToolStripMenuItem SortToolStripItem_Route;
+        private System.Windows.Forms.ToolStripMenuItem SortToolStripItem_Vehicle;
+        private System.Windows.Forms.ToolStripMenuItem SortToolStripItem_Author;
+        private System.Windows.Forms.ToolStripMenuItem SortToolStripItem_File;
+        private System.Windows.Forms.ColumnHeader columnHeader_Title;
+        private System.Windows.Forms.ColumnHeader columnHeader_Route;
+        private System.Windows.Forms.ColumnHeader columnHeader_Vehicle;
+        private System.Windows.Forms.ColumnHeader columnHeader_Author;
+        private System.Windows.Forms.ColumnHeader columnHeader_File;
     }
 }
