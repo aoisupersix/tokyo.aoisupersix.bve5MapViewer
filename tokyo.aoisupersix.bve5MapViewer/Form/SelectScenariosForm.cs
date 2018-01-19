@@ -35,6 +35,8 @@ namespace tokyo.aoisupersix.bve5MapViewer
             string[] files = System.IO.Directory.GetFiles(defaultPath, "*");
 
             //読み込み
+            int w = 64;
+            int h = 64;
             foreach(string file in files)
             {
                 Parser.Scenario scenario = new Parser.Scenario(file);

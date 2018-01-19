@@ -23,6 +23,30 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
         /// </summary>
         public ScenarioData Data { get; set; }
 
+        private Image CreateThumbnail(string path, int width, int height)
+        {
+            Bitmap originalBitmap = new Bitmap(path);
+            //縦横比の計算
+            int x, y;
+            double w = (double)width / originalBitmap.Width;
+            double h = (double)height / originalBitmap.Height;
+            if(w <= h)
+            {
+                x = width;
+                y = (int)(width * (w / h));
+            }
+            else
+            {
+                x = (int)(height * (h / w));
+                y = height;
+            }
+
+            Bitmap bitmap = new Bitmap(width, height);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            graphics.DrawImage(originalBitmap, 0, 0, x, y);
+            return bitmap;
+        }
+
         /// <summary>
         /// シナリオをファイルパスを指定して作成します。
         /// </summary>
@@ -91,8 +115,8 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 try
                 {
                     if (!listView.LargeImageList.Images.ContainsKey(Data.Image))
-                        listView.LargeImageList.Images.Add(Data.Image, Image.FromFile(dirName + Data.Image));
-
+                        listView.LargeImageList.Images.Add(Data.Image, CreateThumbnail(dirName + Data.Image, 64, 64));
+                    Image img = Image.FromFile(dirName + Data.Image);
                     item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(Data.Image);
                 }
                 catch (Exception) { Console.Error.WriteLine("Scenario: Image not active format."); }
