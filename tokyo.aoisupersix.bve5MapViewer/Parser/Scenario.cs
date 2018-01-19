@@ -5,8 +5,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-using Irony.Interpreter;
-using Irony.Parsing;
+using Bve5_Parsing.ScenarioGrammar;
 
 namespace tokyo.aoisupersix.bve5MapViewer.Parser
 {
@@ -15,58 +14,15 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
     /// </summary>
     class Scenario
     {
-        public string ScenarioPath;
-
-        //以下シナリオファイルのデータ達
-        public string RoutePath { get; private set; }
-        public string VehiclePath { get; private set; }
-        public string ImagePath { get; private set; }
-        public string TitleName { get; private set; }
-        public string RouteTitleName { get; private set; }
-        public string VehicleTitleName { get; private set; }
-        public string AuthorName { get; private set; }
-        public string Comment { get; private set; }
-
-        public Scenario(string path)
-        {
-            ScenarioPath = path;
-        }
-
         /// <summary>
-        /// 取得した情報をメンバに代入する
+        /// ファイルパス
         /// </summary>
-        /// <param name="key">ステートメントキー名</param>
-        /// <param name="value">ステートメントの値</param>
-        private void setData(string key, string value)
-        {
-            switch (key)
-            {
-                case "Route":
-                    RoutePath = value;
-                    break;
-                case "Vehicle":
-                    VehiclePath = value;
-                    break;
-                case "Image":
-                    ImagePath = value;
-                    break;
-                case "Title":
-                    TitleName = value;
-                    break;
-                case "RouteTitle":
-                    RouteTitleName = value;
-                    break;
-                case "VehicleTitle":
-                    VehicleTitleName = value;
-                    break;
-                case "Author":
-                    AuthorName = value;
-                    break;
-                case "Comment":
-                    Comment = value;
-                    break;
-            }
-        }
+        public string ScenarioPath { get; set; }
+        
+        /// <summary>
+        /// シナリオのデータ
+        /// </summary>
+        public ScenarioData Data { get; set; }
 
 
         /// <summary>
