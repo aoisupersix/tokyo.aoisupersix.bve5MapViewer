@@ -23,6 +23,13 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
         /// </summary>
         public ScenarioData Data { get; set; }
 
+        /// <summary>
+        /// シナリオのサムネイルを縦横比を固定して返します。
+        /// </summary>
+        /// <param name="path">サムネイル画像のファイルパス</param>
+        /// <param name="width">サムネイルの横幅</param>
+        /// <param name="height">サムネイルの縦幅</param>
+        /// <returns>引数に指定した大きさのサムネイル画像</returns>
         private Image CreateThumbnail(string path, int width, int height)
         {
             Bitmap originalBitmap = new Bitmap(path);
@@ -41,9 +48,15 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 y = height;
             }
 
+            //描画位置を計算
+            int sx = (width - x) / 2;
+            int sy = (height - y) / 2;
+
+            //imagelistに合わせたサムネイルを描画
             Bitmap bitmap = new Bitmap(width, height);
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.DrawImage(originalBitmap, 0, 0, x, y);
+            graphics.DrawImage(originalBitmap, sx, sy, sx+x, sy+y);
+
             return bitmap;
         }
 
@@ -115,7 +128,7 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 try
                 {
                     if (!listView.LargeImageList.Images.ContainsKey(Data.Image))
-                        listView.LargeImageList.Images.Add(Data.Image, CreateThumbnail(dirName + Data.Image, 64, 64));
+                        listView.LargeImageList.Images.Add(Data.Image, CreateThumbnail(dirName + Data.Image, 128, 128));
                     Image img = Image.FromFile(dirName + Data.Image);
                     item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(Data.Image);
                 }
