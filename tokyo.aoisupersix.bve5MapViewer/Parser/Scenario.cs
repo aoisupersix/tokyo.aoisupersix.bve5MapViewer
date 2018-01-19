@@ -42,6 +42,7 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
             using (Hnx8.ReadJEnc.FileReader reader = new FileReader(this.File))
             {
                 Hnx8.ReadJEnc.CharCode c = reader.Read(this.File);
+                Console.WriteLine("-----------------------------------------------------------------------");
                 Console.WriteLine("Loading ScenarioFile【{0}】...", this.File.Name);
                 string text = reader.Text;
                 if (c is CharCode.Text)
