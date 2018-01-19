@@ -102,39 +102,39 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
         /// <returns>追加後のリストビュー</returns>
         public ListView AddListViewItem(ListView listView)
         {
-            ListViewItem item = new ListViewItem(TitleName);
-            item.Name = TitleName;
-            item.Text = TitleName;
+            ListViewItem item = new ListViewItem(Data.Title);
+            item.Name = Data.Title;
+            item.Text = Data.Title;
 
             //画像の追加
             string dirName = System.IO.Path.GetDirectoryName(ScenarioPath) + @"\";
-            if (ImagePath != null && System.IO.File.Exists(dirName + ImagePath))
+            if (Data.Image != null && System.IO.File.Exists(dirName + Data.Image))
             {
                 //画像登録
                 try
                 {
-                    if (!listView.LargeImageList.Images.ContainsKey(ImagePath))
-                        listView.LargeImageList.Images.Add(ImagePath, Image.FromFile(dirName + ImagePath));
+                    if (!listView.LargeImageList.Images.ContainsKey(Data.Image))
+                        listView.LargeImageList.Images.Add(Data.Image, Image.FromFile(dirName + Data.Image));
 
-                    item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(ImagePath);
+                    item.ImageIndex = listView.LargeImageList.Images.IndexOfKey(Data.Image);
                 }
                 catch (Exception) { Console.Error.WriteLine("Scenario: Image not active format."); }
 
             }
 
             //グループの追加
-            if (RouteTitleName != null)
+            if (Data.RouteTitle != null)
             {
                 int groupIndex = -1;
                 for (int i = 0; i < listView.Groups.Count; i++)
                 {
-                    if (listView.Groups[i].Header.Equals(RouteTitleName))
+                    if (listView.Groups[i].Header.Equals(Data.RouteTitle))
                         groupIndex = i;
                 }
                 if(groupIndex == -1)
                 {
                     //グループがないので登録
-                    ListViewGroup group = new ListViewGroup(RouteTitleName, HorizontalAlignment.Left);
+                    ListViewGroup group = new ListViewGroup(Data.RouteTitle, HorizontalAlignment.Left);
                     listView.Groups.Add(group);
                     groupIndex = listView.Groups.Count - 1;
                 }
