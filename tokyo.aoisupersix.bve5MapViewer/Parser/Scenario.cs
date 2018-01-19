@@ -2,8 +2,6 @@
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 using Bve5_Parsing.ScenarioGrammar;
 using Hnx8.ReadJEnc;
@@ -50,47 +48,25 @@ namespace tokyo.aoisupersix.bve5MapViewer.Parser
                 {
                     //読み込んだファイルがテキスト
                     Console.WriteLine("Encoding: {0}", c.Name);
+                    ScenarioGrammarParser parser = new ScenarioGrammarParser();
+
+                    try
+                    {
+                        this.Data = parser.Parse(text);
+                        Console.WriteLine("Parse Successful !");
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.Error.WriteLine("Scenario: 【{0}】header mismatched.", this.File.FullName);
+                    }
                 }
                 else
                 {
                     //テキストファイルではない
-                    //TODO
                     Console.Error.WriteLine("【{0}】is not text file.", this.File.FullName);
                 }
             }
-
-            ////シナリオヘッダと一致させる。ヘッダのバージョンは現時点では無視 -> TODO
-            //int pos;
-            //if ((pos = Regex.Match(scenario, FileHeaders.SCENARIO, RegexOptions.IgnoreCase).Index) != -1)
-            //{
-            //    //ヘッダ部分を削除
-            //    int firstLine = scenario.IndexOf('\n', pos) + 1;
-            //    scenario = scenario.Substring(firstLine);
-            //    Console.WriteLine("scenario:{0}", scenario);
-
-            //    Dictionary<string, string> ScenarioData;
-            //    try
-            //    {
-            //        ScriptApp app = new ScriptApp(new LanguageData(new ScenariosGrammar()));
-            //        ScenarioData = (Dictionary<string, string>)app.Evaluate(scenario);
-            //    }
-            //    catch (ScriptException e)
-            //    {
-            //        Console.Error.WriteLine("Scenario: ParseError : {0}:{1}", e.Location, e.Message);
-            //        return false;
-            //    }
-            //    if (ScenarioData.ContainsKey("Route"))
-            //    {
-            //        //読み込んだファイルの文法が正しい
-            //        Console.WriteLine("Scenario: LoadScenarioData:{0}", ScenarioPath);
-            //        foreach (var p in ScenarioData)
-            //        {
-            //            Console.WriteLine("Key:{0} -> Value:{1}", p.Key, p.Value);
-            //            setData(p.Key, p.Value);
-            //        }
-            //        return true;
-            //    }
-            //}
             Console.Error.WriteLine("Scenario: header mismatched.");
             return false;
         }
