@@ -55,6 +55,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bve5_Parsing, Version=0.5.6593.25926, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bve5_Parsing.dll</HintPath>
+    </Reference>
     <Reference Include="Hnx8.ReadJEnc, Version=1.3.0.821, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ReadJEnc.1.3.0.0821\lib\net\Hnx8.ReadJEnc.dll</HintPath>
     </Reference>
@@ -81,7 +85,6 @@
     <Compile Include="Form\Core.Designer.cs">
       <DependentUpon>Core.cs</DependentUpon>
     </Compile>
-    <Compile Include="Parser\ParseInfo.cs" />
     <Compile Include="Parser\Scenario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
